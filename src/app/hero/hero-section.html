@@ -1,0 +1,80 @@
+<section
+  id="home"
+  class="relative isolate overflow-hidden bg-linear-to-br from-brand-950 via-brand-900 to-brand-700 text-white"
+>
+  <!-- Dekorasi kontur gunung -->
+  <svg
+    class="pointer-events-none absolute inset-x-0 bottom-0 -z-10 h-2/3 w-full text-brand-100/15"
+    viewBox="0 0 1200 600"
+    preserveAspectRatio="xMidYMax slice"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="2"
+    aria-hidden="true"
+  >
+    <path d="M0 520 L220 330 L360 420 L600 150 L820 380 L960 290 L1200 480" />
+    <path d="M0 560 L240 380 L370 460 L600 220 L810 430 L960 350 L1200 520" />
+    <path d="M0 600 L260 430 L380 500 L600 290 L800 480 L960 410 L1200 560" />
+    <path d="M0 640 L280 480 L390 540 L600 360 L790 530 L960 470 L1200 600" />
+  </svg>
+  <div
+    class="pointer-events-none absolute -top-24 -right-24 -z-10 size-96 rounded-full bg-brand-500/30 blur-3xl"
+    aria-hidden="true"
+  ></div>
+
+  <div
+    class="mx-auto grid min-h-[calc(100svh-4.5rem)] max-w-6xl items-center gap-10 px-5 py-16 sm:px-8 md:grid-cols-[1.4fr_1fr] lg:px-10"
+  >
+    <div>
+    <p
+      class="hero-in mb-4 inline-flex w-fit items-center gap-2 rounded-full border border-white/25 bg-white/10 px-4 py-1.5 text-sm font-semibold tracking-wide text-brand-100 backdrop-blur"
+    >
+      <span class="size-2 rounded-full bg-accent-yellow" aria-hidden="true"></span>
+      Trail Fun &amp; Summit Trail
+    </p>
+
+    <h1
+      class="hero-in text-4xl leading-[0.95] font-black uppercase min-[420px]:text-5xl sm:text-7xl md:text-5xl lg:text-7xl"
+    >
+      @for (line of event.nameLines; track line) {
+        <span class="block">{{ line }}</span>
+      }
+      <span class="block text-accent-yellow">{{ event.year }}</span>
+    </h1>
+
+    <p class="hero-in mt-6 max-w-xl [--hero-delay:150ms] text-lg text-brand-100 sm:text-xl">{{ event.tagline }}</p>
+
+    <dl class="hero-in mt-8 [--hero-delay:300ms] flex flex-col gap-4 sm:flex-row sm:gap-10">
+      <div>
+        <dt class="text-xs font-semibold tracking-widest text-brand-100/80 uppercase">Tanggal</dt>
+        <dd class="mt-1 text-xl font-bold sm:text-2xl">{{ event.date }}</dd>
+      </div>
+      <div>
+        <dt class="text-xs font-semibold tracking-widest text-brand-100/80 uppercase">Lokasi</dt>
+        <dd class="mt-1 text-xl font-bold sm:text-2xl">{{ event.location }}</dd>
+      </div>
+    </dl>
+
+    <div class="hero-in mt-10 [--hero-delay:450ms] flex flex-col gap-3 sm:flex-row sm:gap-4">
+      <a
+        [href]="event.registerUrl"
+        class="inline-flex min-h-12 items-center justify-center rounded-full bg-accent-yellow px-8 py-3 font-bold text-brand-950 transition-colors hover:bg-accent-orange focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-white"
+      >
+        Daftar Sekarang
+      </a>
+      <a
+        href="#kategori"
+        class="inline-flex min-h-12 items-center justify-center rounded-full border-2 border-white/70 px-8 py-3 font-bold text-white transition-colors hover:bg-white/15 focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-white"
+      >
+        Lihat Kategori
+      </a>
+    </div>
+
+    </div>
+
+    <div class="hero-in flex flex-col items-center gap-8 [--hero-delay:600ms] md:justify-self-center">
+      <img src="assets/images/gtr-logo.png" alt="" width="1417" height="1417" class="hidden w-full max-w-md drop-shadow-2xl lg:block" aria-hidden="true" />
+      <app-association-logos height="h-7 min-[400px]:h-9 sm:h-11 md:h-7 lg:h-10" listClass="flex-nowrap justify-center gap-4 sm:gap-8 md:gap-4 lg:gap-8" />
+    </div>
+  </div>
+</section>
