@@ -1,0 +1,56 @@
+<section id="kategori" class="bg-brand-100 py-20 text-brand-950 sm:py-28">
+  <div class="mx-auto max-w-6xl px-5 sm:px-8 lg:px-10">
+    <div appReveal>
+    <p class="text-sm font-bold tracking-widest text-brand-700 uppercase">Kategori Lomba</p>
+    <h2 class="mt-3 text-4xl font-black uppercase sm:text-5xl">Pilih Tantanganmu</h2>
+    </div>
+
+    <div class="mt-12 grid gap-6 md:grid-cols-2 lg:gap-8">
+      @for (c of categories; track c.id; let i = $index) {
+        <article
+          appReveal
+          [revealDelay]="i * 120"
+          [id]="c.id"
+          tabindex="-1"
+          class="relative flex flex-col overflow-hidden rounded-3xl bg-linear-to-br from-brand-950 via-brand-900 to-brand-800 p-8 text-white shadow-xl outline-none transition-[scale,box-shadow] duration-300 ease-out hover:z-10 hover:shadow-2xl motion-safe:hover:scale-[1.04] motion-safe:has-[a:focus-visible]:scale-[1.03] focus-visible:ring-4 focus-visible:ring-brand-500 sm:p-10"
+        >
+          <div
+            class="absolute inset-x-0 top-0 h-1.5"
+            [class.bg-accent-yellow]="c.accent === 'yellow'"
+            [class.bg-accent-orange]="c.accent === 'orange'"
+            aria-hidden="true"
+          ></div>
+          <p
+            class="font-display text-8xl leading-none font-black sm:text-9xl"
+            [class.text-accent-yellow]="c.accent === 'yellow'"
+            [class.text-accent-orange]="c.accent === 'orange'"
+          >
+            {{ c.distance }}
+          </p>
+          <h3 class="mt-2 text-2xl font-extrabold tracking-wide uppercase sm:text-3xl">{{ c.name }}</h3>
+          <p class="mt-4 text-brand-100">{{ c.description }}</p>
+
+          <dl class="mt-8 grid grid-cols-2 gap-4">
+            <div class="rounded-2xl border border-white/15 bg-white/10 p-4">
+              <dt class="text-xs font-semibold tracking-widest text-brand-100/80 uppercase">Elevation Gain</dt>
+              <dd class="mt-1 text-2xl font-extrabold">{{ c.elevation }}</dd>
+            </div>
+            <div class="rounded-2xl border border-white/15 bg-white/10 p-4">
+              <dt class="text-xs font-semibold tracking-widest text-brand-100/80 uppercase">Cut-off Time</dt>
+              <dd class="mt-1 text-2xl font-extrabold">{{ c.cutOff }}</dd>
+            </div>
+          </dl>
+
+          <a
+            [href]="'#' + c.id"
+            class="mt-8 inline-flex min-h-12 w-fit items-center justify-center rounded-full px-8 py-3 font-bold text-brand-950 transition-colors hover:bg-white focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-white"
+            [class.bg-accent-yellow]="c.accent === 'yellow'"
+            [class.bg-accent-orange]="c.accent === 'orange'"
+          >
+            {{ c.cta }}
+          </a>
+        </article>
+      }
+    </div>
+  </div>
+</section>
