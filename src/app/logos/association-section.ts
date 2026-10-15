@@ -11,8 +11,8 @@ import { Reveal } from '../reveal.directive';
         <path d="M0 340 L250 180 L400 270 L620 90 L840 280 L1000 200 L1200 330" />
         <path d="M0 390 L270 230 L410 320 L620 150 L830 330 L1000 260 L1200 380" />
       </svg>
-      <div appReveal class="mx-auto flex max-w-3xl items-center justify-center px-5 sm:px-8">
-        <app-association-logos height="h-14 sm:h-20" listClass="justify-center gap-x-10 gap-y-6 sm:gap-x-16" />
+      <div appReveal class="mx-auto flex max-w-5xl items-center justify-center px-5 sm:px-8">
+        <app-association-logos [includeNationalLeague]="true" height="h-10 sm:h-12 md:h-16" listClass="justify-center gap-x-6 gap-y-5 sm:gap-x-10 md:gap-x-16" />
       </div>
     </section>
   `,

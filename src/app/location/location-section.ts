@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
 import { Reveal } from '../reveal.directive';
 import { EVENT } from '../event-data';
+import { EventMap } from './event-map';
 
 @Component({
-  imports: [Reveal],
+  imports: [Reveal, EventMap],
   selector: 'app-location-section',
   template: `
     <section id="lokasi" class="bg-white py-20 text-brand-950 sm:py-28">
@@ -26,6 +27,17 @@ import { EVENT } from '../event-data';
               Informasi detail titik start, titik finish, dan akses menuju lokasi akan diumumkan
               melalui kanal resmi penyelenggara.
             </p>
+            <a
+              [href]="event.mapsUrl"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="mt-6 inline-flex min-h-12 items-center justify-center rounded-full bg-accent-yellow px-8 py-3 font-bold text-brand-950 transition-colors hover:bg-white focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-white"
+            >
+              Buka di Google Maps<span class="sr-only"> (buka di tab baru)</span>
+            </a>
+          </div>
+          <div class="relative isolate mt-8 overflow-hidden rounded-2xl border border-white/20 bg-brand-950/40">
+            <app-event-map />
           </div>
         </div>
       </div>

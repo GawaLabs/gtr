@@ -15,7 +15,7 @@ import { Reveal } from '../reveal.directive';
           <div class="mt-5 h-1.5 w-20 rounded-full bg-accent-yellow"></div>
         </div>
         <p appReveal [revealDelay]="120" class="max-w-prose self-center border-l-4 border-brand-700 pl-6 text-xl leading-relaxed text-pretty text-brand-900 sm:text-2xl sm:leading-relaxed">
-          Taklukkan jalur ekstrem Pegunungan Gawalise, Gunung Gawalise - Sulawesi Tengah. Rasakan
+          Taklukkan jalur ekstrem Pegunungan Gawalise, Sulawesi Tengah. Rasakan 
           sensasi lari lintas alam megah dengan pemandangan Lembah Palu &amp; Teluk Palu.
         </p>
       </div>

@@ -72,6 +72,10 @@ export class LogoShowcase {
   protected readonly groups: LogoGroup[] = [
     { title: 'Sponsored by', label: 'Sponsor Logo', logos: [] },
     { title: 'Supported by', label: 'Supporting Organization', logos: [
+      { src: 'assets/images/supporters/sulteng.svg', alt: 'Pemerintah Provinsi Sulawesi Tengah', href: 'https://sultengprov.go.id/' },
+      { src: 'assets/images/supporters/sigi.png', alt: 'Pemerintah Kabupaten Sigi', href: 'https://sigikab.go.id/' },
+      { src: 'assets/images/supporters/koni-sulteng.png', alt: 'KONI Sulawesi Tengah', href: 'https://konisulteng.id/' },
+      { src: 'assets/images/supporters/alti-sulteng.webp', alt: 'ALTI Sulawesi Tengah', href: 'https://altisulteng.or.id/' },
       { src: 'assets/images/supporters/champurun.png', alt: 'Champurun', href: 'https://www.instagram.com/champurun/' },
       { src: 'assets/images/supporters/infotrailrunpalu.png', alt: 'Inforailrunpalu', href: 'https://www.instagram.com/infotrailrunpalu/' },
       { src: 'assets/images/supporters/uwetumbu.png', alt: 'Uwetumbu Trail Run', href: 'https://www.instagram.com/uwetumbu_trailrun_palu/' },
