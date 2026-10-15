@@ -20,9 +20,19 @@ import { EVENT } from '../event-data';
         <!-- Area kanan: disiapkan untuk menu footer (belum ada tautan). -->
         <div class="md:ml-auto"></div>
       </div>
-      <p class="mx-auto mt-10 max-w-6xl border-t border-white/10 px-5 pt-6 text-sm sm:px-8 lg:px-10">
-        &copy; 2026 {{ event.fullName }}.
-      </p>
+      <div class="mx-auto mt-10 flex max-w-6xl flex-col gap-3 border-t border-white/10 px-5 pt-6 text-sm sm:flex-row sm:items-center sm:justify-between sm:px-8 lg:px-10">
+        <p>&copy; 2026 {{ event.fullName }}.</p>
+        <p class="self-end font-mono text-xs text-brand-100/60">
+          Site by
+          <a
+            href="https://www.instagram.com/ucuptopekox/"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="rounded underline-offset-4 transition-colors hover:text-accent-yellow hover:underline focus-visible:text-accent-yellow focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent-yellow"
+            >Ucup Topekox<span class="sr-only"> (Instagram, buka di tab baru)</span></a
+          >
+        </p>
+      </div>
     </footer>
   `,
 })

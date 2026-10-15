@@ -1,8 +1,12 @@
-import { Component, HostListener, OnDestroy, OnInit, signal } from '@angular/core';
+import { Component, DestroyRef, HostListener, OnDestroy, OnInit, inject, signal } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { NavigationEnd, Router, RouterLink } from '@angular/router';
+import { filter } from 'rxjs';
 import { EVENT, NAV_ITEMS, NavItem, SECTION_IDS } from '../event-data';
 
 @Component({
   selector: 'app-site-header',
+  imports: [RouterLink],
   templateUrl: './site-header.html',
 })
 export class SiteHeader implements OnInit, OnDestroy {
@@ -12,8 +16,22 @@ export class SiteHeader implements OnInit, OnDestroy {
   protected readonly openMenu = signal<string | null>(null);
   protected readonly active = signal('home');
   private observer?: IntersectionObserver;
+  private readonly router = inject(Router);
+  private readonly destroyRef = inject(DestroyRef);
 
   ngOnInit(): void {
+    this.observeSections();
+    // Header tetap hidup antar-rute: amati ulang section setelah halaman berganti.
+    this.router.events
+      .pipe(filter((e) => e instanceof NavigationEnd), takeUntilDestroyed(this.destroyRef))
+      .subscribe(() => setTimeout(() => this.observeSections()));
+  }
+
+  private observeSections(): void {
+    this.observer?.disconnect();
+    const url = this.router.url;
+    this.active.set(url.startsWith('/kategori') ? 'kategori' : url.startsWith('/contact') ? 'kontak' : url.startsWith('/lokasi') ? 'lokasi' : 'home');
+    const els = SECTION_IDS.map((id) => document.getElementById(id)).filter((el) => !!el);
     if (typeof IntersectionObserver === 'undefined') return;
     this.observer = new IntersectionObserver(
       (entries) => {
@@ -21,10 +39,7 @@ export class SiteHeader implements OnInit, OnDestroy {
       },
       { rootMargin: '-40% 0px -55% 0px' },
     );
-    for (const id of SECTION_IDS) {
-      const el = document.getElementById(id);
-      if (el) this.observer.observe(el);
-    }
+    for (const el of els) this.observer.observe(el);
   }
 
   ngOnDestroy(): void {

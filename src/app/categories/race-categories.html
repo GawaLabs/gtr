@@ -41,14 +41,48 @@
             </div>
           </dl>
 
-          <a
-            [href]="'#' + c.id"
-            class="mt-8 inline-flex min-h-12 w-fit items-center justify-center rounded-full px-8 py-3 font-bold text-brand-950 transition-colors hover:bg-white focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-white"
-            [class.bg-accent-yellow]="c.accent === 'yellow'"
-            [class.bg-accent-orange]="c.accent === 'orange'"
-          >
-            {{ c.cta }}
-          </a>
+          <h4 class="mt-8 text-xs font-semibold tracking-widest text-brand-100/80 uppercase">Benefit Peserta</h4>
+          <ul class="mt-3 flex flex-1 flex-col gap-2">
+            @for (b of c.benefits; track b.label) {
+              <li
+                class="flex items-center gap-3 rounded-xl px-3 py-2 text-sm sm:text-base"
+                [class.border]="b.highlight"
+                [class.font-bold]="b.highlight"
+                [class.bg-accent-orange]="b.highlight"
+                [class.text-brand-950]="b.highlight"
+              >
+                <svg class="size-5 shrink-0" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"
+                  [class.text-accent-yellow]="!b.highlight && c.accent === 'yellow'"
+                  [class.text-accent-orange]="!b.highlight && c.accent === 'orange'">
+                  <path fill-rule="evenodd" d="M16.7 5.3a1 1 0 0 1 0 1.4l-7.5 7.5a1 1 0 0 1-1.4 0L3.3 9.7a1 1 0 1 1 1.4-1.4l3.8 3.8 6.8-6.8a1 1 0 0 1 1.4 0Z" clip-rule="evenodd" />
+                </svg>
+                <span>{{ b.label }}</span>
+                @if (b.highlight) {
+                  <span class="ml-auto rounded-full bg-brand-950 px-2 py-0.5 text-[10px] font-bold tracking-wider text-white uppercase">Eksklusif</span>
+                }
+              </li>
+            }
+          </ul>
+
+          @if (c.route) {
+            <a
+              [routerLink]="c.route"
+              class="mt-8 inline-flex min-h-12 w-fit items-center justify-center rounded-full px-8 py-3 font-bold text-brand-950 transition-colors hover:bg-white focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-white"
+              [class.bg-accent-yellow]="c.accent === 'yellow'"
+              [class.bg-accent-orange]="c.accent === 'orange'"
+            >
+              {{ c.cta }}
+            </a>
+          } @else {
+            <a
+              [href]="'#' + c.id"
+              class="mt-8 inline-flex min-h-12 w-fit items-center justify-center rounded-full px-8 py-3 font-bold text-brand-950 transition-colors hover:bg-white focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-white"
+              [class.bg-accent-yellow]="c.accent === 'yellow'"
+              [class.bg-accent-orange]="c.accent === 'orange'"
+            >
+              {{ c.cta }}
+            </a>
+          }
         </article>
       }
     </div>

@@ -80,35 +80,48 @@
               >
                 @for (child of children; track child.href) {
                   <li>
-                    <a
-                      [href]="child.href"
-                      (click)="closeAll()"
-                      class="flex min-h-12 items-center rounded-lg px-4 hover:bg-white/10 focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-accent-yellow"
-                    >
-                      {{ child.label }}
-                    </a>
+                    @if (child.route) {
+                      <a
+                        [routerLink]="child.route"
+                        (click)="closeAll()"
+                        class="flex min-h-12 items-center rounded-lg px-4 hover:bg-white/10 focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-accent-yellow"
+                      >
+                        {{ child.label }}
+                      </a>
+                    } @else {
+                      <a
+                        [href]="child.href"
+                        (click)="closeAll()"
+                        class="flex min-h-12 items-center rounded-lg px-4 hover:bg-white/10 focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-accent-yellow"
+                      >
+                        {{ child.label }}
+                      </a>
+                    }
                   </li>
                 }
               </ul>
-            } @else if (!item.href) {
-              <!-- Tujuan belum tersedia: tampil nonaktif, tidak menavigasi -->
-              <a
-                role="link"
-                aria-disabled="true"
-                class="flex min-h-12 cursor-not-allowed items-center rounded-lg px-4 font-semibold text-white/50"
-              >
-                {{ item.label }}
-              </a>
             } @else {
-              <a
-                [href]="item.href"
-                (click)="closeAll()"
-                class="flex min-h-12 items-center rounded-lg px-4 font-semibold hover:bg-white/10 focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-accent-yellow"
-                [class.text-accent-yellow]="isActive(item)"
-                [attr.aria-current]="isActive(item) ? 'location' : null"
-              >
-                {{ item.label }}
-              </a>
+              @if (item.route) {
+                <a
+                  [routerLink]="item.route"
+                  (click)="closeAll()"
+                  class="flex min-h-12 items-center rounded-lg px-4 font-semibold hover:bg-white/10 focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-accent-yellow"
+                  [class.text-accent-yellow]="isActive(item)"
+                  [attr.aria-current]="isActive(item) ? 'location' : null"
+                >
+                  {{ item.label }}
+                </a>
+              } @else {
+                <a
+                  [href]="item.href"
+                  (click)="closeAll()"
+                  class="flex min-h-12 items-center rounded-lg px-4 font-semibold hover:bg-white/10 focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-accent-yellow"
+                  [class.text-accent-yellow]="isActive(item)"
+                  [attr.aria-current]="isActive(item) ? 'location' : null"
+                >
+                  {{ item.label }}
+                </a>
+              }
             }
           </li>
         }
