@@ -70,7 +70,10 @@ export class LogoShowcase {
 
   // Isi `logos` dengan file di public/assets/images/ (mis. 'assets/images/supporters/nama.png').
   protected readonly groups: LogoGroup[] = [
-    { title: 'Sponsored by', label: 'Sponsor Logo', logos: [] },
+    { title: 'Sponsored by', label: 'Sponsor Logo', logos: [
+      { src: 'assets/images/sponsored/sak.webp', alt: 'SAK Official' },
+      { src: 'assets/images/sponsored/gulf+.webp', alt: 'Gulf+', href: 'https://gulf.co.id/' },
+    ] },
     { title: 'Supported by', label: 'Supporting Organization', logos: [
       { src: 'assets/images/supporters/sulteng.svg', alt: 'Pemerintah Provinsi Sulawesi Tengah', href: 'https://sultengprov.go.id/' },
       { src: 'assets/images/supporters/sigi.png', alt: 'Pemerintah Kabupaten Sigi', href: 'https://sigikab.go.id/' },
