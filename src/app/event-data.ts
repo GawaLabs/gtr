@@ -94,6 +94,8 @@ export interface NavLink {
   href: string;
   /** Rute Angular Router; jika ada, dipakai menggantikan href anchor. */
   route?: string;
+  /** Tautan ke situs luar; dibuka di tab baru. */
+  external?: boolean;
 }
 
 export interface NavItem {
@@ -105,6 +107,10 @@ export interface NavItem {
   children?: readonly NavLink[];
 }
 
+/** Folder Google Drive berisi file GPX rute lomba. */
+export const GPX_URL =
+  'https://drive.google.com/drive/folders/1rroQm4HkBaAVTmWWyUK6udFG-fc-W0U3?fbclid=PAZXh0bgNhZW0DMTAwAHBkb2YCc3J0YwZhcHBfaWQPOTM2NjE5NzQzMzkyNDU5AAGnVJVYspxbXG4PdHGaEeFlhOKAIU7F0-yK4pfUdY5selEelJ5Pe6PDqWkSqTg_aem_OY9cg1NF6j2afX2PEBbadQ';
+
 export const NAV_ITEMS: readonly NavItem[] = [
   { id: 'home', label: 'Home', href: '#home' },
   {
@@ -115,7 +121,19 @@ export const NAV_ITEMS: readonly NavItem[] = [
       { label: '18 KM Summit Trail', href: '#summit-trail', route: '/kategori/18k-summit-trail' },
     ],
   },
-  { id: 'race-info', label: 'Race Info', children: [{ label: 'Lokasi', href: '#lokasi', route: '/lokasi' }] },
+  {
+    id: 'race-info',
+    label: 'Race Info',
+    children: [
+      { label: 'Lokasi', href: '#lokasi', route: '/lokasi' },
+      { label: 'Mandatory Gear', href: '#mandatory-gear', route: '/mandatory-gear' },
+      {
+        label: 'Download GPX',
+        href: GPX_URL,
+        external: true,
+      },
+    ],
+  },
   { id: 'kontak', label: 'Contact', route: '/contact' },
 ];
 

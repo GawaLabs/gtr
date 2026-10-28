@@ -30,7 +30,7 @@ export class SiteHeader implements OnInit, OnDestroy {
   private observeSections(): void {
     this.observer?.disconnect();
     const url = this.router.url;
-    this.active.set(url.startsWith('/kategori') ? 'kategori' : url.startsWith('/contact') ? 'kontak' : url.startsWith('/lokasi') ? 'lokasi' : 'home');
+    this.active.set(url.startsWith('/kategori') ? 'kategori' : url.startsWith('/contact') ? 'kontak' : url.startsWith('/lokasi') ? 'lokasi' : url.startsWith('/mandatory-gear') ? 'mandatory-gear' : 'home');
     const els = SECTION_IDS.map((id) => document.getElementById(id)).filter((el) => !!el);
     if (typeof IntersectionObserver === 'undefined') return;
     this.observer = new IntersectionObserver(
@@ -71,7 +71,7 @@ export class SiteHeader implements OnInit, OnDestroy {
 
   protected isActive(item: NavItem): boolean {
     const id = this.active();
-    return item.id === 'race-info' ? id === 'lokasi' : item.id === id;
+    return item.id === 'race-info' ? id === 'lokasi' || id === 'mandatory-gear' : item.id === id;
   }
 
   @HostListener('document:keydown.escape')

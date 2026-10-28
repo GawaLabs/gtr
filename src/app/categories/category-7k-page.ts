@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { CATEGORIES, EVENT } from '../event-data';
+import { CATEGORIES, EVENT, GPX_URL } from '../event-data';
 import { LocationSection } from '../location/location-section';
 import { Reveal } from '../reveal.directive';
 
@@ -95,6 +95,22 @@ import { Reveal } from '../reveal.directive';
           <span class="sr-only">(buka gambar ukuran penuh di tab baru)</span>
         </a>
         <p class="mt-3 text-sm text-brand-700">Ketuk atau klik gambar untuk membuka ukuran penuh di tab baru.</p>
+        <div class="mt-8 flex flex-col gap-3 sm:flex-row sm:gap-4">
+          <a
+            [href]="gpxUrl"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex min-h-12 items-center justify-center rounded-full bg-brand-700 px-8 py-3 font-bold text-white transition-colors hover:bg-brand-800 focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-brand-700"
+          >
+            Download GPX<span class="sr-only"> (buka di tab baru)</span>
+          </a>
+          <a
+            routerLink="/mandatory-gear"
+            class="inline-flex min-h-12 items-center justify-center rounded-full border-2 border-brand-700 px-8 py-3 font-bold text-brand-700 transition-colors hover:bg-brand-700 hover:text-white focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-brand-700"
+          >
+            Lihat Mandatory Gear
+          </a>
+        </div>
       </div>
     </section>
 
@@ -128,6 +144,7 @@ import { Reveal } from '../reveal.directive';
 })
 export class Category7kPage {
   protected readonly event = EVENT;
+  protected readonly gpxUrl = GPX_URL;
   private readonly category = CATEGORIES.find((c) => c.id === 'trail-fun')!;
   protected readonly benefits = this.category.benefits;
   protected readonly image = this.category.detailImage!;
