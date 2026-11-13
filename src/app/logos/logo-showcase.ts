@@ -11,23 +11,26 @@ interface Logo {
 interface LogoGroup {
   title: string;
   label: string;
+  /** 'small' = logo lebih kecil untuk sponsor biasa. */
+  size?: 'small';
   /** Kosong = tampilkan placeholder sementara. */
   logos: Logo[];
 }
 
-/** Dua section terpisah berlatar putih penuh: Sponsored by dan Supported by. */
+/** Tiga section terpisah berlatar putih penuh: Main Sponsor, Supported by, dan Sponsored by (logo kecil). */
 @Component({
   selector: 'app-logo-showcase',
   imports: [Reveal],
   host: { class: 'block' },
   template: `
     @for (g of groups; track g.title) {
-      <section [attr.aria-label]="g.title" class="w-full bg-white py-16 text-brand-950 sm:py-20">
+      <section [attr.aria-label]="g.title" class="w-full bg-white text-brand-950" [class]="g.size ? 'pb-16 pt-4 sm:pb-20' : 'py-16 sm:py-20'">
         <div appReveal class="mx-auto max-w-6xl px-5 sm:px-8 lg:px-10">
-          <h2 class="text-center text-3xl font-extrabold uppercase sm:text-4xl">{{ g.title }}</h2>
-          <ul class="mt-8 flex flex-wrap items-center justify-center gap-3 sm:gap-4">
+          <h2 class="text-center font-extrabold uppercase" [class]="g.size ? 'text-xl sm:text-2xl' : 'text-3xl sm:text-4xl'">{{ g.title }}</h2>
+          <ul class="mt-8 flex flex-wrap items-center justify-center" [class]="g.size ? 'gap-2 sm:gap-3' : 'gap-3 sm:gap-4'">
             @for (logo of g.logos; track logo.src) {
-              <li class="relative flex aspect-[3/2] w-32 items-center justify-center p-2 transition-transform duration-300 ease-out hover:z-10 motion-safe:hover:scale-[1.08] motion-safe:has-[a:focus-visible]:scale-[1.05] sm:w-40 lg:w-44">
+              <li class="relative flex aspect-[3/2] items-center justify-center p-2 transition-transform duration-300 ease-out hover:z-10 motion-safe:hover:scale-[1.08] motion-safe:has-[a:focus-visible]:scale-[1.05]"
+                [class]="g.size ? 'w-20 sm:w-24 lg:w-28' : 'w-32 sm:w-40 lg:w-44'">
                 @if (logo.href) {
                   <a
                     [href]="logo.href"
@@ -70,21 +73,9 @@ export class LogoShowcase {
 
   // Isi `logos` dengan file di public/assets/images/ (mis. 'assets/images/supporters/nama.png').
   protected readonly groups: LogoGroup[] = [
-    { title: 'Sponsored by', label: 'Sponsor Logo', logos: [
+    { title: 'Main Sponsor', label: 'Main Sponsor Logo', logos: [
       { src: 'assets/images/sponsored/sak.webp', alt: 'SAK Official' },
       { src: 'assets/images/sponsored/forester.webp', alt: 'Forester' },
-      { src: 'assets/images/sponsored/gulf+.webp', alt: 'Gulf+', href: 'https://gulf.co.id/' },
-      { src: 'assets/images/sponsored/lpl.webp', alt: 'LPL Kargo', href: 'https://www.instagram.com/lpl_kargo_ekpress/' },
-      { src: 'assets/images/sponsored/dapoer_mbok_jonggreng.webp', alt: 'Dapoer Mbok Jonggreng', href: 'https://www.instagram.com/dapoermbokjonggreng/' },
-      { src: 'assets/images/sponsored/rumah_zakat.webp', alt: 'Rumah Zakat', href: 'https://www.instagram.com/rumahzakat/' },
-      { src: 'assets/images/sponsored/banua_cedera.webp', alt: 'Banua Cedera', href: 'https://www.instagram.com/banuacedera/' },
-      { src: 'assets/images/sponsored/duta-binjas.webp', alt: 'Duta Binjas', href: 'https://www.instagram.com/duta_bimbel_binjas_sulteng/' },
-      { src: 'assets/images/sponsored/geprek-yuks.webp', alt: 'Geprek Yuks', href: 'https://www.instagram.com/geprekyuksss.id/' },
-      { src: 'assets/images/sponsored/bosowa-parigi.webp', alt: 'Bosowa Berlian Parigi', href: 'https://www.instagram.com/bosowaberlianparigi/' },
-      { src: 'assets/images/sponsored/mustika-gym.webp', alt: 'Mustika Gym', href: 'https://www.instagram.com/mustika.gym/' },
-      { src: 'assets/images/sponsored/toko-maman.webp', alt: 'Toko Maman', href: 'https://www.instagram.com/tokomaman/' },
-      { src: 'assets/images/sponsored/bsi.webp', alt: 'BSI', href: 'https://www.instagram.com/banksyariahindonesia/' },
-      { src: 'assets/images/sponsored/adi-putra.webp', alt: 'Adhi Putra', href: 'https://www.instagram.com/bus.adhiputra/' },
     ] },
     { title: 'Supported by', label: 'Supporting Organization', logos: [
       { src: 'assets/images/supporters/sulteng.svg', alt: 'Pemerintah Provinsi Sulawesi Tengah', href: 'https://sultengprov.go.id/' },
@@ -97,6 +88,20 @@ export class LogoShowcase {
       { src: 'assets/images/supporters/infotrailrunpalu.png', alt: 'Inforailrunpalu', href: 'https://www.instagram.com/infotrailrunpalu/' },
       { src: 'assets/images/supporters/uwetumbu.png', alt: 'Uwetumbu Trail Run', href: 'https://www.instagram.com/uwetumbu_trailrun_palu/' },
       { src: 'assets/images/supporters/wildtrac.png', alt: 'Wildtrac', href: 'https://www.instagram.com/wildtrac.trailrunning/' },
+    ] },
+    { title: 'Sponsored by', label: 'Sponsor Logo', size: 'small', logos: [
+      { src: 'assets/images/sponsored/gulf+.webp', alt: 'Gulf+', href: 'https://gulf.co.id/' },
+      { src: 'assets/images/sponsored/lpl.webp', alt: 'LPL Kargo', href: 'https://www.instagram.com/lpl_kargo_ekpress/' },
+      { src: 'assets/images/sponsored/dapoer_mbok_jonggreng.webp', alt: 'Dapoer Mbok Jonggreng', href: 'https://www.instagram.com/dapoermbokjonggreng/' },
+      { src: 'assets/images/sponsored/rumah_zakat.webp', alt: 'Rumah Zakat', href: 'https://www.instagram.com/rumahzakat/' },
+      { src: 'assets/images/sponsored/banua_cedera.webp', alt: 'Banua Cedera', href: 'https://www.instagram.com/banuacedera/' },
+      { src: 'assets/images/sponsored/duta-binjas.webp', alt: 'Duta Binjas', href: 'https://www.instagram.com/duta_bimbel_binjas_sulteng/' },
+      { src: 'assets/images/sponsored/geprek-yuks.webp', alt: 'Geprek Yuks', href: 'https://www.instagram.com/geprekyuksss.id/' },
+      { src: 'assets/images/sponsored/bosowa-parigi.webp', alt: 'Bosowa Berlian Parigi', href: 'https://www.instagram.com/bosowaberlianparigi/' },
+      { src: 'assets/images/sponsored/mustika-gym.webp', alt: 'Mustika Gym', href: 'https://www.instagram.com/mustika.gym/' },
+      { src: 'assets/images/sponsored/toko-maman.webp', alt: 'Toko Maman', href: 'https://www.instagram.com/tokomaman/' },
+      { src: 'assets/images/sponsored/bsi.webp', alt: 'BSI', href: 'https://www.instagram.com/banksyariahindonesia/' },
+      { src: 'assets/images/sponsored/adi-putra.webp', alt: 'Adhi Putra', href: 'https://www.instagram.com/bus.adhiputra/' },
     ] },
   ];
 }
